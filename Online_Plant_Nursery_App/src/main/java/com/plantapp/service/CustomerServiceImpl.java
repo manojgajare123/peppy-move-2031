@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer updateCustomer(Customer customer) throws CustomerException {
-		Optional<Customer> opt=cr.findById(customer.getCustomer_id());
+		Optional<Customer> opt=cr.findById(customer.getCid());
 		if(opt.isPresent()) {
 			Customer c= cr.save(customer);
 			return c;
@@ -74,7 +74,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer validateCustomer(String userName, String password) throws CustomerException {
-		Customer c= cr.findByCustomer_usernameAndCustomer_password(userName, password);
+		Customer c= cr.findByCusernameAndCpassword(userName, password);
 		if(c!=null) {
 			return c;
 		}

@@ -11,53 +11,64 @@ public class Customer {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer customer_id;
-	private String customer_name;
-	private String customer_email;
-	private String customer_username;
-	private String customer_password;
-	
+	private Integer cid;
+	private String cname;
+	private String cemail;
+	private String cusername;
+	private String cpassword;
+
 	@Embedded
 	private Address customer_address;
 
-	public Integer getCustomer_id() {
-		return customer_id;
+	public Customer(Integer cid, String cname, String cemail, String cusername, String cpassword,
+			Address customer_address) {
+		super();
+		this.cid = cid;
+		this.cname = cname;
+		this.cemail = cemail;
+		this.cusername = cusername;
+		this.cpassword = cpassword;
+		this.customer_address = customer_address;
 	}
 
-	public void setCustomer_id(Integer customer_id) {
-		this.customer_id = customer_id;
+	public Integer getCid() {
+		return cid;
 	}
 
-	public String getCustomer_name() {
-		return customer_name;
+	public void setCid(Integer cid) {
+		this.cid = cid;
 	}
 
-	public void setCustomer_name(String customer_name) {
-		this.customer_name = customer_name;
+	public String getCname() {
+		return cname;
 	}
 
-	public String getCustomer_email() {
-		return customer_email;
+	public void setCname(String cname) {
+		this.cname = cname;
 	}
 
-	public void setCustomer_email(String customer_email) {
-		this.customer_email = customer_email;
+	public String getCemail() {
+		return cemail;
 	}
 
-	public String getCustomer_username() {
-		return customer_username;
+	public void setCemail(String cemail) {
+		this.cemail = cemail;
 	}
 
-	public void setCustomer_username(String customer_username) {
-		this.customer_username = customer_username;
+	public String getCusername() {
+		return cusername;
 	}
 
-	public String getCustomer_password() {
-		return customer_password;
+	public void setCusername(String cusername) {
+		this.cusername = cusername;
 	}
 
-	public void setCustomer_password(String customer_password) {
-		this.customer_password = customer_password;
+	public String getCpassword() {
+		return cpassword;
+	}
+
+	public void setCpassword(String cpassword) {
+		this.cpassword = cpassword;
 	}
 
 	public Address getCustomer_address() {
@@ -66,24 +77,6 @@ public class Customer {
 
 	public void setCustomer_address(Address customer_address) {
 		this.customer_address = customer_address;
-	}
-
-	public Customer(Integer customer_id, String customer_name, String customer_email, String customer_username,
-			String customer_password, Address customer_address) {
-		super();
-		this.customer_id = customer_id;
-		this.customer_name = customer_name;
-		this.customer_email = customer_email;
-		this.customer_username = customer_username;
-		this.customer_password = customer_password;
-		this.customer_address = customer_address;
-	}
-
-	@Override
-	public String toString() {
-		return "Customer [customer_id=" + customer_id + ", customer_name=" + customer_name + ", customer_email="
-				+ customer_email + ", customer_username=" + customer_username + ", customer_password="
-				+ customer_password + ", customer_address=" + customer_address + "]";
 	}
 
 	public Customer() {

@@ -8,5 +8,5 @@ import com.plantapp.model.Customer;
 @Repository
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
-	public Customer findByCustomer_usernameAndCustomer_password(String customer_username,String customer_password);
+	public Customer findByCusernameAndCpassword(String cusername,String cpassword);
 }
