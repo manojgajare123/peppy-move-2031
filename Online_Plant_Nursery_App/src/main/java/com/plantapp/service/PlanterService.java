@@ -7,14 +7,24 @@ import com.plantapp.model.Planter;
 
 
 public interface PlanterService {
+	
+	public Planter addPlanter(Planter planter)throws PlanterException;
+	
+	public Planter updatePlanter(Planter planter)throws PlanterException;
+	
+	public Planter deletePlanter(Planter planter)throws PlanterException;
+	
+	public Planter viewPlanterById(Integer planterId)throws PlanterException;
+	
+	public List<Planter> viewPlanterByShape(String planterShape)throws PlanterException;
+	
+	public List<Planter> viewAllPlanters()throws PlanterException ;
+	
+	public List<Planter> viewAllPlanters(Double minCost, Double maxCost)throws PlanterException ;
 
-	Planter updatePlanter(Planter planter) throws PlanterException;
-
-	Planter addPlanter(Planter planter) throws PlanterException;
 	
 
-
-			
+		
 }
 
 
