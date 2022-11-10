@@ -47,4 +47,9 @@ public class GlobalException {
 		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(CustomerException.class)
+	public ResponseEntity<String> customerExceptionHandler(CustomerException ce) {
+		return new ResponseEntity<String>(ce.getMessage(), HttpStatus.BAD_REQUEST);
+	}
+	
 }
