@@ -6,90 +6,114 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.plantapp.exception.PlantException;
+import com.plantapp.exception.PlantExeption;
 import com.plantapp.model.Plant;
 import com.plantapp.repository.PlantDao;
 
 
 
 @Service
-public class PlantServiceImpl implements PlantService{
-	
+
+public class PlantServiceImpl implements PlantService {
+
 	@Autowired
-	private PlantDao plantDao;
+	private PlantDao dao;
+	
+	@Override
+	public Plant addPlant(Plant plant) throws PlantExeption {
+		 Plant addPlant=dao.save(plant);
+
+	        if(addPlant!=null)
+	        {
+	        	return addPlant;
+	        }
+	         
+	        
+	        else {
+	        throw new PlantExeption("Plant details are empty........");
+			}
+	}
 
 	@Override
-	public Plant addPlant(Plant plant) throws PlantException {
-		Optional<Plant> opt= plantDao.findById(plant.getPlantId());
+	public Plant updatePlant(Plant plant) throws PlantExeption {
+    Optional<Plant>opt=dao.findById(plant.getPlantId());
 		
+		if(opt.isPresent())
+		{
+			Plant pl=dao.save(plant);
+			return pl;
+		}
+	
+	
+	else {
+        throw new PlantExeption("Plant with given id is not presesnt........");
+
+	}
+		
+	       
+	}
+
+	@Override
+	public Plant deletePlant(Integer plantId) throws PlantExeption {
+	
+		Optional<Plant> opt= dao.findById(plantId);
 		if(opt.isPresent()) {
-			throw new PlantException("Plant Already existS");
+			Plant  existingPlant=opt.get();
+			dao.delete(existingPlant);
 			
+			return existingPlant;
+		}
+		else {
+			throw new PlantExeption("Student does not exist with Roll :"+plantId);
 			
 		}
-		else
-			return plantDao.save(plant);
-		
 		
 		
 	}
-//
-//	@Override
-//	public Plant updatePlant(Plant plant)throws PlantException {
-//		 Plant obj = plantDao.findById(plant.getPlantId()).orElseThrow(() -> new PlantException("Plant not found "));
-//	        
-//		 return plantDao.save(plant);
-//	       
-//		
-//	}
-//
-//	@Override
-//	public Plant deletePlant(Plant plant) throws PlantException {
-//		Plant existingPlant= plantDao.findById(plant.getPlantId()).orElseThrow(() -> new PlantException("Plant does not exist with Plant Id "+plant.getPlantId()));;
-//		
-//		plantDao.delete(existingPlant);
-//				
-//		return existingPlant;
-//	}
-//
-//	@Override
-//	public Plant viewPlant(Integer plantId) throws PlantException{
-//		Plant obj= plantDao.findById(plantId).orElseThrow(() -> new PlantException("Plant does not exist with Plant Id "+plantId) );
-//	
-//		return obj;
-//	}
-//
-//	@Override
-//	public List<Plant> viewPlant(String commonName) throws PlantException {
-//
-//		List<Plant> plants= plantDao.findByCommonName(commonName);
-//		
-//		if(plants.size() > 0)
-//			return plants;
-//		else
-//			throw new PlantException("Plant does not exist with Name "+commonName);
-//		
-//	}
-//
-//	@Override
-//	public List<Plant> viewAllPlants() throws PlantException {
-//		List<Plant> plants= plantDao.findAll();
-//		
-//		if(plants.size() > 0)
-//			return plants;
-//		else
-//			throw new PlantException("No Plant found..");
-//		
-//	}
-//
-//	@Override
-//	public List<Plant> viewAllPlants(String typeOfPlant) throws PlantException {
-//		List<Plant> plants= plantDao.findByTypeOfPlant(typeOfPlant);
-//		
-//		if(plants.size() > 0)
-//			return plants;
-//		else
-//			throw new PlantException("Plant does not exist with Type "+typeOfPlant);
-//	}
-//
+	
+
+	@Override
+	public Plant viewPlant(Integer plantId) throws PlantExeption{
+		Plant obj= dao.findById(plantId).orElseThrow(() -> new PlantExeption("Plant does not exist with Plant Id "+plantId) );
+	
+		return obj;
+	}
+
+	@Override
+	public List<Plant> viewPlant(String commonName) throws PlantExeption {
+
+		List<Plant> plants= dao.findByCommonName(commonName);
+		
+		if(plants.size() > 0)
+			return plants;
+		else
+			throw new PlantExeption("Plant does not exist with Name "+commonName);
+		
+	}
+
+	@Override
+	public List<Plant> viewAllPlants() throws PlantExeption {
+		
+List<Plant> plants= dao.findAll();
+		
+		if(plants.size() > 0)
+			return plants;
+		else
+			throw new PlantExeption("No Plant found..");
+		
+		
+	}
+
+	
+
+	@Override
+	public List<Plant> viewAllPlants(String typeOfPlant) throws PlantExeption {
+		List<Plant> plants= dao.findByTypeOfPlant(typeOfPlant);
+		
+		if(plants.size() > 0)
+			return plants;
+		else
+			throw new PlantExeption("Plant does not exist with Type "+typeOfPlant);
+	}
+
 }

@@ -7,14 +7,11 @@ import org.springframework.stereotype.Repository;
 
 import com.plantapp.model.Plant;
 
-
-
 @Repository
-public interface PlantDao extends JpaRepository<Plant, Integer> {
-	
-//	public List<Plant> findByCommonName(String commonName);
-	
-//	public List<Plant> findByTypeOfPlant(String typeOfPlant);
-	
-	
+public interface PlantDao extends JpaRepository<Plant, Integer>  {
+
+	List<Plant> findByCommonName(String commonName);
+
+	List<Plant> findByTypeOfPlant(String typeOfPlant);
+
 }

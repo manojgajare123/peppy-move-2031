@@ -15,8 +15,8 @@ import com.plantapp.model.MyErrorDetails;
 
 public class GlobalException {
 
-	@ExceptionHandler(PlantException.class)
-	public ResponseEntity<MyErrorDetails> myExceptionHandler(PlantException ie, WebRequest req) {
+	@ExceptionHandler(PlantExeption.class)
+	public ResponseEntity<MyErrorDetails> myExceptionHandler(PlantExeption ie, WebRequest req) {
 
 		MyErrorDetails m = new MyErrorDetails();
 		m.setLocalDateTime(LocalDateTime.now());
