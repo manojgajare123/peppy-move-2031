@@ -28,14 +28,15 @@ public class Planter {
 	
 	@Min(value = 1,message = "Provided capacity should be atleast 1")
 	@NotNull(message = "Please provide capacity of planter")
-	private Integer plantCapacity;
+	private Integer planterCapacity;
 	
 	@Min(value = 1, message = "Provide minimum 1 drainage hole")
 	@NotNull(message = "missing drainage holes")
 	private Integer drainageHoles;
 	
+
 	@NotNull(message = "Provide planter color")
-	private Integer planterColor;
+	private String planterColor;
 	
 	@NotNull(message = "Provide planter shape")
 	private String planterShape;
