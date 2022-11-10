@@ -1,15 +1,15 @@
 package com.plantapp.exception;
 
-public class PlantException extends Exception{
+public class PlantExeption extends Exception {
 	
-	public PlantException() {
+	
+	public PlantExeption() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public PlantException(String message) {
+	public PlantExeption(String message) {
 	
 		super(message);
 		// TODO Auto-generated constructor stub
 	}
-
 }
