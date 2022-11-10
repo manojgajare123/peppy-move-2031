@@ -14,7 +14,7 @@ import com.plantapp.model.Planter;
 import com.plantapp.service.PlanterService;
 
 @RestController
-public class Controller {
+public class PlanterController {
 
 	@Autowired
 	private PlanterService planterService;
