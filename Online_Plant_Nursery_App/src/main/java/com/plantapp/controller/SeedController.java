@@ -42,13 +42,13 @@ public class SeedController {
 		return new ResponseEntity<Seed>(deletedSeed,HttpStatus.OK);
 	}
 	
-	@GetMapping("/seed/{seedId}")
+	@GetMapping("/seedid/{seedId}")
 	public ResponseEntity<Seed>viewSeedByIdHandler(@PathVariable("seedId") Integer seedId) throws SeedException{
 		Seed currentSeed=sService.viewSeedById(seedId);
 		return new ResponseEntity<Seed>(currentSeed,HttpStatus.OK);
 	}
 	
-	@GetMapping("/seed/{commonName}")
+	@GetMapping("/seedname/{commonName}")
 	public ResponseEntity<Seed>viewSeedByNameHandler(@PathVariable("commonName") String commonName) throws SeedException{
 		Seed seed=sService.viewSeedByCommonName(commonName);
 		return new ResponseEntity<Seed>(seed,HttpStatus.OK);
