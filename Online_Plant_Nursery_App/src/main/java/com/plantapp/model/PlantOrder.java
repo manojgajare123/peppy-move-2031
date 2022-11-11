@@ -2,6 +2,7 @@ package com.plantapp.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -33,19 +35,25 @@ public class PlantOrder {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Customer customer;
 
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Planter planter;
+
 	public PlantOrder() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public PlantOrder(Integer bookingOrderId, LocalDate orderDate, String transactionMode, Integer quantity,
-			Double totalCost) {
+			Double totalCost, Customer customer, Planter planter) {
 		super();
 		this.bookingOrderId = bookingOrderId;
 		this.orderDate = orderDate;
 		this.transactionMode = transactionMode;
 		this.quantity = quantity;
 		this.totalCost = totalCost;
+		this.customer = customer;
+		this.planter = planter;
 	}
 
 	public Integer getBookingOrderId() {
@@ -88,10 +96,20 @@ public class PlantOrder {
 		this.totalCost = totalCost;
 	}
 
-	@Override
-	public String toString() {
-		return "Order [bookingOrderId=" + bookingOrderId + ", orderDate=" + orderDate + ", transactionMode="
-				+ transactionMode + ", quantity=" + quantity + ", totalCost=" + totalCost + "]";
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
+
+	public Planter getPlanter() {
+		return planter;
+	}
+
+	public void setPlanter(Planter planter) {
+		this.planter = planter;
 	}
 
 }

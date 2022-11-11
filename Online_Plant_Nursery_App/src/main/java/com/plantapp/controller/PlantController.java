@@ -27,7 +27,7 @@ public class PlantController {
 	@PostMapping("/add")
 	public ResponseEntity<Plant> addPlant(@RequestBody Plant plant) throws PlantExeption {
 	Plant plant1=	plantservice.addPlant(plant);
-//		System.out.println(plant);
+		System.out.println(plant);
 		return new ResponseEntity<Plant>(plant1, HttpStatus.OK);
 
 	}
@@ -59,6 +59,9 @@ public class PlantController {
 	@GetMapping("/viewplants")
 	public ResponseEntity<List<Plant>> ShowPlants() throws PlantExeption{
 	List<Plant> plants=	plantservice.viewAllPlants();
+	
+	
+	System.out.println(plants);
 		return new ResponseEntity<List<Plant>>(plants,HttpStatus.OK);
 	}
 	

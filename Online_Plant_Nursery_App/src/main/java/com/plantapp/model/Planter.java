@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -54,10 +57,16 @@ public class Planter {
 	private Integer planterCost;
 	
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "plantId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "planter")
 	private List<Plant> plants= new ArrayList<>();
 	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "seedId")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "planter")
 	private List<Seed> seeds= new ArrayList<>();
+	
+	
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "planter")
+	private List<PlantOrder> planrorders= new ArrayList<>();
+	
+	
 	
 }

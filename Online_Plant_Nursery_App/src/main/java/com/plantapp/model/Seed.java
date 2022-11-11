@@ -14,23 +14,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Seed {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-  private Integer seedId;
-  private  String commonName;
-  private String bloomTime;
-  private String watering;
-  private String difficultyLevel;
-  private String temperature;
-  private String typeOfSeeds;
-  private String seedDescription;
-  private Integer seedsStock;
-  private double seedsCost;
-  private Integer seedsPerPacket;
-  
-  @JsonIgnore
-	@ManyToOne (cascade = CascadeType.ALL)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer seedId;
+	private String commonName;
+	private String bloomTime;
+	private String watering;
+	private String difficultyLevel;
+	private String temperature;
+	private String typeOfSeeds;
+	private String seedDescription;
+	private Integer seedsStock;
+	private double seedsCost;
+	private Integer seedsPerPacket;
+
+	@JsonIgnore
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "planterId")
 	private Planter planter;
-	
-  
-  
+
 }
