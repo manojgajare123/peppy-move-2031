@@ -56,17 +56,11 @@ public class Planter {
 	@Min(value = 0,message ="Cost should be greater than 0" )
 	private Integer planterCost;
 	
-	
+
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "planter")
 	private List<Plant> plants= new ArrayList<>();
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "planter")
 	private List<Seed> seeds= new ArrayList<>();
-	
-	
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "planter")
-	private List<PlantOrder> planrorders= new ArrayList<>();
-	
-	
 	
 }
