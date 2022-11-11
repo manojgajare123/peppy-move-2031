@@ -1,10 +1,18 @@
 package com.plantapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
 
 @Entity
 public class Customer {
@@ -19,6 +27,9 @@ public class Customer {
 
 	@Embedded
 	private Address customer_address;
+	
+	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private List<PlantOrder> orders = new ArrayList<>();
 
 	public Customer(Integer cid, String cname, String cemail, String cusername, String cpassword,
 			Address customer_address) {
