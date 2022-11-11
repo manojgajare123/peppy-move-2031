@@ -29,7 +29,7 @@ public class PlantOrder {
 	private Double totalCost;
 
 	@ManyToOne
-	@JoinColumn(name = "customer_id")
+	@JoinColumn(name = "cid")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Customer customer;
 
