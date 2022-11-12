@@ -12,6 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.UniqueElements;
 
 
 @Entity
@@ -21,8 +25,11 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cid;
 	private String cname;
+	@Email(message = "Must be email type")
 	private String cemail;
+	@UniqueElements(message = "Customer Username cannot be same")
 	private String cusername;
+	@NotNull
 	private String cpassword;
 
 	@Embedded

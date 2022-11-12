@@ -2,6 +2,8 @@ package com.plantapp.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +28,7 @@ public class CustomerController {
 	CustomerServiceImpl csi;
 	
 	@PostMapping("/add")
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer) throws CustomerException {
+	public ResponseEntity<String> addCustomer(@Valid @RequestBody Customer customer) throws CustomerException {
 		Customer c=csi.addCustomer(customer);
 		return new ResponseEntity<String>("Customer added succesfully with details :"+customer,HttpStatus.CREATED);
 	}
