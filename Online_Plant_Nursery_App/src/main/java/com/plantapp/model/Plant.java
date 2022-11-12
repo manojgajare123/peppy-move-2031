@@ -40,6 +40,7 @@ public class Plant {
 	
 
 	@NotEmpty(message = "Common name of plant is missing")
+	@Column(unique = true)
 	private String commonName;
 	
 	@NotEmpty(message = "Bloom time for plant need to mention")

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -13,10 +14,15 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 
 @Entity
+@AllArgsConstructor
+@NoArgsConstructor
 @Data
 public class Customer {
 
@@ -25,7 +31,11 @@ public class Customer {
 	private Integer cid;
 	private String cname;
 	private String cemail;
+	@NonNull
+	@Column(unique = true)
 	private String cusername;
+	
+	@NonNull
 	private String cpassword;
 
 	@Embedded
@@ -34,66 +44,5 @@ public class Customer {
 	@OneToMany(mappedBy = "customer", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private List<PlantOrder> orders = new ArrayList<>();
 
-	public Customer(Integer cid, String cname, String cemail, String cusername, String cpassword,
-			Address customer_address) {
-		super();
-		this.cid = cid;
-		this.cname = cname;
-		this.cemail = cemail;
-		this.cusername = cusername;
-		this.cpassword = cpassword;
-		this.customer_address = customer_address;
-	}
-
-	public Integer getCid() {
-		return cid;
-	}
-
-	public void setCid(Integer cid) {
-		this.cid = cid;
-	}
-
-	public String getCname() {
-		return cname;
-	}
-
-	public void setCname(String cname) {
-		this.cname = cname;
-	}
-
-	public String getCemail() {
-		return cemail;
-	}
-
-	public void setCemail(String cemail) {
-		this.cemail = cemail;
-	}
-
-	public String getCusername() {
-		return cusername;
-	}
-
-	public void setCusername(String cusername) {
-		this.cusername = cusername;
-	}
-
-	public String getCpassword() {
-		return cpassword;
-	}
-
-	public void setCpassword(String cpassword) {
-		this.cpassword = cpassword;
-	}
-
-	public Address getCustomer_address() {
-		return customer_address;
-	}
-
-	public void setCustomer_address(Address customer_address) {
-		this.customer_address = customer_address;
-	}
-
-	public Customer() {
-
-	}
+	
 }
