@@ -104,7 +104,10 @@ public class PlanterServiceImpl implements PlanterService {
 
 	@Override
 	public List<Planter> viewAllPlanters(Double minCost, Double maxCost) throws PlanterException {
-		// TODO Auto-generated method stub
+	
+		
+		
+		
 		return null;
 	}
 

@@ -18,7 +18,9 @@ import com.plantapp.model.Planter;
 import com.plantapp.model.Seed;
 import com.plantapp.repository.CustomerRepo;
 import com.plantapp.repository.OrderRepo;
+import com.plantapp.repository.PlantDao;
 import com.plantapp.repository.PlanterDao;
+import com.plantapp.repository.SeedRepo;
 import com.plantapp.repository.SessionDao;
 
 @Service
@@ -38,6 +40,12 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private SessionDao sDao;
+
+	@Autowired
+	private PlantDao pDao;
+
+	@Autowired
+	private SeedRepo seedDao;
 
 	@Override
 	public PlantOrder placeOrder(CustomerDTO cdto, String key) throws OrderException, LoginException {
@@ -127,6 +135,10 @@ public class OrderServiceImpl implements OrderService {
 
 			PlantOrder p = opt.get();
 
+			Planter a = p.getPlanter();
+
+			System.out.println(a);
+
 			oRepo.delete(p);
 
 			return p;
@@ -142,8 +154,11 @@ public class OrderServiceImpl implements OrderService {
 
 		List<PlantOrder> orderList = oRepo.findAll();
 
-		if (!orderList.isEmpty())
+		if (!orderList.isEmpty()) {
+
 			return orderList;
+
+		}
 
 		throw new OrderException("No Order History Found");
 
@@ -169,6 +184,47 @@ public class OrderServiceImpl implements OrderService {
 		}
 
 		throw new OrderException("no order found with this id");
+	}
+
+	@Override
+	public String getPlanter(Integer id) {
+
+		Optional<PlantOrder> opt = oRepo.findById(id);
+
+		if (opt.isPresent()) {
+
+			String name = opt.get().getName();
+
+			List<Plant> plist = pDao.findByCommonName(name);
+
+			Seed slist =  seedDao.findBycommonName(name);
+
+			if (!plist.isEmpty()) {
+
+				plist.get(0).setPlantStock(plist.get(0).getPlantStock() + 15);
+
+				pDao.save(plist.get(0));
+
+				return "working";
+
+			}
+			
+			
+			if(slist!=null) {
+				
+				slist.setSeedsStock(id);
+
+				pDao.save(plist.get(0));
+
+				return "working";
+				
+				
+				
+			}
+
+		}
+
+		return "not Working";
 	}
 
 }
