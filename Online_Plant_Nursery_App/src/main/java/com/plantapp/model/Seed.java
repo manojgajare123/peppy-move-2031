@@ -19,6 +19,7 @@ public class Seed {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer seedId;
 	@NotEmpty(message = "Common name of seed is missing")
+	@Column(unique = true)
 	private String commonName;
 	@NotEmpty(message = "Bloom time for seed need to be mentioned")
 	private String bloomTime;

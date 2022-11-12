@@ -13,7 +13,6 @@ import com.plantapp.repository.PlantDao;
 
 
 @Service
-
 public class PlantServiceImpl implements PlantService {
 
 	@Autowired

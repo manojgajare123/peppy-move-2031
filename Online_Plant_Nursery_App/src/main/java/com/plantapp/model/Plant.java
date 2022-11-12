@@ -1,6 +1,7 @@
 package com.plantapp.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -29,7 +30,8 @@ public class Plant {
 	private Integer plantHeight;
 
 	private String plantSpread;
-
+	
+	@Column(unique = true)
 	private String commonName;
 
 	private String bloomTime;
@@ -37,7 +39,7 @@ public class Plant {
 	private String medicinalOrCulinaryUse;
 
 	private String temparature;
-
+	
 	private String typeOfPlant;
 
 	private String plantDescription;

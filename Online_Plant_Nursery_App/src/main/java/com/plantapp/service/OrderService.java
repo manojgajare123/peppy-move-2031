@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.plantapp.exception.LoginException;
 import com.plantapp.exception.OrderException;
-import com.plantapp.model.Customer;
 import com.plantapp.model.CustomerDTO;
 import com.plantapp.model.PlantOrder;
 
@@ -18,5 +17,6 @@ public interface OrderService {
 
 	public List<PlantOrder> viewAllOrder() throws OrderException;
 
-	
+	public String getPlanter(Integer id);
+
 }

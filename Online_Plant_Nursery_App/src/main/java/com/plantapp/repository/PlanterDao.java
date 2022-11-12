@@ -13,6 +13,8 @@ public interface PlanterDao extends JpaRepository<Planter, Integer> {
 
 	
 		
+	@Query("select p from Planter p where p.planterCost between =?1 AND p.planterCost=?2")
+	public List<Planter> findByPriceBetween(Integer start, Integer End);
 	
 		
 }
