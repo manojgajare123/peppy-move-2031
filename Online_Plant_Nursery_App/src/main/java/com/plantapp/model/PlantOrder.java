@@ -22,6 +22,8 @@ public class PlantOrder {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer bookingOrderId;
 
+	private String name;
+
 	private LocalDate orderDate;
 
 	private String transactionMode;
@@ -44,10 +46,11 @@ public class PlantOrder {
 		// TODO Auto-generated constructor stub
 	}
 
-	public PlantOrder(Integer bookingOrderId, LocalDate orderDate, String transactionMode, Integer quantity,
-			Double totalCost, Customer customer, Planter planter) {
+	public PlantOrder(Integer bookingOrderId, String name, LocalDate orderDate, String transactionMode,
+			Integer quantity, Double totalCost, Customer customer, Planter planter) {
 		super();
 		this.bookingOrderId = bookingOrderId;
+		this.name = name;
 		this.orderDate = orderDate;
 		this.transactionMode = transactionMode;
 		this.quantity = quantity;
@@ -56,12 +59,27 @@ public class PlantOrder {
 		this.planter = planter;
 	}
 
+	@Override
+	public String toString() {
+		return "PlantOrder [bookingOrderId=" + bookingOrderId + ", name=" + name + ", orderDate=" + orderDate
+				+ ", transactionMode=" + transactionMode + ", quantity=" + quantity + ", totalCost=" + totalCost
+				+ ", customer=" + customer + ", planter=" + planter + "]";
+	}
+
 	public Integer getBookingOrderId() {
 		return bookingOrderId;
 	}
 
 	public void setBookingOrderId(Integer bookingOrderId) {
 		this.bookingOrderId = bookingOrderId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public LocalDate getOrderDate() {
