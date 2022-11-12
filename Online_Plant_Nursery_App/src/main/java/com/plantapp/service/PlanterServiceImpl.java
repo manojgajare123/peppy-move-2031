@@ -58,6 +58,27 @@ public class PlanterServiceImpl implements PlanterService {
 	@Override
 	public Planter updatePlanter(Planter planter) throws PlanterException {
 
+		List<Plant> plant = planter.getPlants();
+
+		List<Seed> seeds = planter.getSeeds();
+
+		if (!seeds.isEmpty()) {
+
+			for (Seed s : seeds) {
+
+				s.setPlanter(planter);
+			}
+
+		}
+
+		if (!plant.isEmpty()) {
+
+			for (Plant p : plant) {
+
+				p.setPlanter(planter);
+			}
+
+		}
 		planterDao.findById(planter.getPlanterId()).orElseThrow(() -> new PlanterException("Planter  not found"));
 
 		return planterDao.save(planter);
@@ -81,7 +102,8 @@ public class PlanterServiceImpl implements PlanterService {
 
 		Optional<Planter> opt = planterDao.findById(planterId);
 
-		return opt.orElseThrow(() -> new PlanterException("Planter not exist with Id :" + planterId));
+		return opt.orElseThrow(() 
+				-> new PlanterException("Planter not exist with Id :" + planterId));
 	}
 
 	@Override
@@ -104,11 +126,15 @@ public class PlanterServiceImpl implements PlanterService {
 
 	@Override
 	public List<Planter> viewAllPlanters(Double minCost, Double maxCost) throws PlanterException {
-	
-		
-		
-		
-		return null;
-	}
 
+		List<Planter> planters= planterDao.getAllPlanterByCost(minCost, maxCost);
+		
+		if(planters.size() > 0)
+			return planters;
+		else
+			throw new PlanterException("No Planters found within "+minCost+" And "+ maxCost);
+	}
 }
+
+	
+

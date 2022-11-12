@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -69,6 +70,10 @@ public class PlanterController {
 	}
 	
 	
-	
+	@GetMapping("/viewplantersByMinMax/{mincost}/{maxcost}")
+	public ResponseEntity<List<Planter>> ViewPlantersByMinMax(@PathVariable("min")double min,@PathVariable("max") double max) throws PlanterException{
+		List<Planter> planters=	planterService.viewAllPlanters(min, max);
+		return new ResponseEntity<List<Planter>>(planters,HttpStatus.OK);
+	}
 	
 }
