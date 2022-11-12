@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -27,7 +28,7 @@ public class Customer {
 	private String cname;
 	@Email(message = "Must be email type")
 	private String cemail;
-	@UniqueElements(message = "Customer Username cannot be same")
+	@Column(unique = true)
 	private String cusername;
 	@NotNull(message = "Customer Password can not be null")
 	private String cpassword;
