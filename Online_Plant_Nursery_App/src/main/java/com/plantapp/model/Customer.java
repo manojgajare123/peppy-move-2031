@@ -29,7 +29,7 @@ public class Customer {
 	private String cemail;
 	@UniqueElements(message = "Customer Username cannot be same")
 	private String cusername;
-	@NotNull
+	@NotNull(message = "Customer Password can not be null")
 	private String cpassword;
 
 	@Embedded
