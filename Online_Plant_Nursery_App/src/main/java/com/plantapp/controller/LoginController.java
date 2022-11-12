@@ -13,33 +13,34 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.plantapp.exception.LoginException;
 import com.plantapp.model.LoginDTO;
+import com.plantapp.service.LoginService;
 
 
 
 @RestController
 public class LoginController {
 
-//	@Autowired
-////	private LoginService customerLogin;
-//	
-//	@PostMapping("/login")
-//	public ResponseEntity<String> logInCustomer(@RequestBody LoginDTO dto) throws LoginException {
-//		
-//		String result = customerLogin.logIntoAccount(dto);
-//		
-//
-//		
-//		return new ResponseEntity<String>(result,HttpStatus.OK );
-//		
-//		
-//	}
-//	
-//	@PostMapping("/logout")
-//	public String logoutCustomer(@RequestParam(required = false) String key) throws LoginException {
-//		return customerLogin.logOutFromAccount(key);
-//		
-//	}
-//	
-//	
+	@Autowired
+	private LoginService customerLogin;
+	
+	@PostMapping("/login")
+	public ResponseEntity<String> logInCustomer(@RequestBody LoginDTO dto) throws LoginException {
+		
+		String result = customerLogin.logIntoAccount(dto);
+		
+
+		
+		return new ResponseEntity<String>(result,HttpStatus.OK );
+		
+		
+	}
+	
+	@PostMapping("/logout")
+	public String logoutCustomer(@RequestParam(required = false) String key) throws LoginException {
+		return customerLogin.logOutFromAccount(key);
+		
+	}
+	
+	
 	
 }

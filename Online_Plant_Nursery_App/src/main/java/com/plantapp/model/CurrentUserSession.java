@@ -19,20 +19,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CurrentUserSession {
-	
 
 	@Id
 	@Column(unique = true)
 	private Integer userId;
-	
-	
+
 	private String uuid;
-	
+
+	private String username;
+
 	private LocalDateTime localDateTime;
 
-	
-
-	
-	
-	
 }

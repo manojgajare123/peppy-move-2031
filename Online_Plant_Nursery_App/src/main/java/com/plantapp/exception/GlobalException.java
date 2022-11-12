@@ -12,7 +12,7 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 
 import com.plantapp.model.MyErrorDetails;
 
-
+@ControllerAdvice
 public class GlobalException {
 
 	@ExceptionHandler(PlantExeption.class)
@@ -46,10 +46,34 @@ public class GlobalException {
 				me.getBindingResult().getFieldError().getDefaultMessage());
 		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
 	}
-	
+
 	@ExceptionHandler(CustomerException.class)
 	public ResponseEntity<String> customerExceptionHandler(CustomerException ce) {
 		return new ResponseEntity<String>(ce.getMessage(), HttpStatus.BAD_REQUEST);
 	}
-	
+
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorDetails> loginExceptionHandler(LoginException se, WebRequest req) {
+
+		MyErrorDetails err = new MyErrorDetails();
+		err.setLocalDateTime(LocalDateTime.now());
+		err.setMessage(se.getMessage());
+		err.setDetails(req.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
+
+	}
+
+	@ExceptionHandler(OrderException.class)
+	public ResponseEntity<MyErrorDetails> orderExceptionHandler(OrderException se, WebRequest req) {
+
+		MyErrorDetails err = new MyErrorDetails();
+		err.setLocalDateTime(LocalDateTime.now());
+		err.setMessage(se.getMessage());
+		err.setDetails(req.getDescription(false));
+
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
+
+	}
+
 }

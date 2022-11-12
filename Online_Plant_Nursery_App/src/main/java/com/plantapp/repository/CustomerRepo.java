@@ -9,4 +9,7 @@ import com.plantapp.model.Customer;
 public interface CustomerRepo extends JpaRepository<Customer, Integer> {
 
 	public Customer findByCusernameAndCpassword(String cusername,String cpassword);
+	
+	
+	public Customer  findByCusername(String cusername);
 }
