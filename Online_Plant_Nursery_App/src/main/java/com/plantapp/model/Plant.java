@@ -1,6 +1,7 @@
 package com.plantapp.model;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -38,6 +39,7 @@ public class Plant {
 	private String plantSpread;
 	
 	@NotEmpty(message = "Common name of plant is missing")
+	@Column(unique = true)
 	private String commonName;
 	
 	@NotEmpty(message = "Bloom time for plant need to mention")
