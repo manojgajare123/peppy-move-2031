@@ -13,8 +13,11 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import lombok.Data;
+
 
 @Entity
+@Data
 public class Customer {
 
 	@Id
