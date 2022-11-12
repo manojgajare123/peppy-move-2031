@@ -24,11 +24,13 @@ public class SeedController {
 	@Autowired
 	private SeedService sService;
 	
+	
 	@PostMapping("/seedadd")
 	public ResponseEntity<Seed>addSeedHandler(@RequestBody Seed seed) throws SeedException{
 		Seed savedSeed=sService.addSeed(seed);
 		return new ResponseEntity<Seed>(savedSeed,HttpStatus.CREATED);
 	}
+	
 	
 	@PutMapping("/seedupdate")
 	public ResponseEntity<Seed>updateSeedHandler(@RequestBody Seed seed) throws SeedException{
@@ -36,11 +38,13 @@ public class SeedController {
 		return new ResponseEntity<Seed>(updatedSeed,HttpStatus.ACCEPTED);
 	}
 	
+	
 	@DeleteMapping("/seeddelete")
 	public ResponseEntity<Seed>deleteSeedHandler(@RequestBody Seed seed) throws SeedException{
 		Seed deletedSeed=sService.deleteSeed(seed);
 		return new ResponseEntity<Seed>(deletedSeed,HttpStatus.OK);
 	}
+	
 	
 	@GetMapping("/seedid/{seedId}")
 	public ResponseEntity<Seed>viewSeedByIdHandler(@PathVariable("seedId") Integer seedId) throws SeedException{
@@ -48,17 +52,20 @@ public class SeedController {
 		return new ResponseEntity<Seed>(currentSeed,HttpStatus.OK);
 	}
 	
+	
 	@GetMapping("/seedname/{commonName}")
 	public ResponseEntity<Seed>viewSeedByNameHandler(@PathVariable("commonName") String commonName) throws SeedException{
 		Seed seed=sService.viewSeedByCommonName(commonName);
 		return new ResponseEntity<Seed>(seed,HttpStatus.OK);
 	}
 	
+	
 	@GetMapping("/seeds")
 	public ResponseEntity<List<Seed>>viewAllSeedsHandler() throws SeedException{
 		List<Seed>seeds=sService.viewAllSeeds();
 		return new ResponseEntity<List<Seed>>(seeds,HttpStatus.OK);
 	}
+	
 	
 	@GetMapping("/seeds/{typeOfSeed}")
 	public ResponseEntity<List<Seed>>viewAllSeedsByTypeHandler(@PathVariable("typeOfSeed") String typeOfSeed) throws SeedException{
