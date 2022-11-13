@@ -39,7 +39,7 @@ public class Seed {
 	private String typeOfSeeds;
 	
 	@NotEmpty(message = "Seed description should not be empty")
-	@Size(min = 20, max = 500, message = "Minimun seed description size must be greater than 20 and less than 500")
+	@Size(min = 5, max = 500, message = "Minimun seed description size must be greater than 5 and less than 500")
 	private String seedDescription;
 	
 	@NotNull(message = "Stock size must be there")

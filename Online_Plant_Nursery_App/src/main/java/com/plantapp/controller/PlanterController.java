@@ -43,10 +43,10 @@ public class PlanterController {
 	}
 	
 
-	@DeleteMapping("admin/deleteplanter")
-	public ResponseEntity<Planter> deletePlanterHandler(@RequestBody Planter Planter) throws PlanterException{
+	@DeleteMapping("admin/deleteplanter/{PlanterId}")
+	public ResponseEntity<Planter> deletePlanterHandler(@PathVariable ("PlanterId") Integer PlanterId) throws PlanterException{
 		
-		Planter planter3=planterService.deletePlanter(Planter);
+		Planter planter3=planterService.deletePlanter(PlanterId);
 		
 		return new ResponseEntity<Planter>(planter3,HttpStatus.OK);
 	}

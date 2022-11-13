@@ -26,21 +26,21 @@ public class CustomerController {
 	CustomerServiceImpl csi;
 	
 	@PostMapping("/add")
-	public ResponseEntity<String> addCustomer(@RequestBody Customer customer) throws CustomerException {
+	public ResponseEntity<Customer> addCustomer(@RequestBody Customer customer) throws CustomerException {
 		Customer c=csi.addCustomer(customer);
-		return new ResponseEntity<String>("Customer added succesfully with details :"+customer,HttpStatus.CREATED);
+		return new ResponseEntity<Customer>(customer,HttpStatus.CREATED);
 	}
 
     @PutMapping("/update")
-	public ResponseEntity<String> updateCustomer(@RequestBody Customer customer) throws CustomerException {
+	public ResponseEntity<Customer> updateCustomer(@RequestBody Customer customer) throws CustomerException {
     	Customer c=csi.updateCustomer(customer);
-    	return new ResponseEntity<String>("Customer details updated succesfully with details :"+customer,HttpStatus.ACCEPTED);
+    	return new ResponseEntity<Customer>(customer,HttpStatus.ACCEPTED);
 	}
 
     @DeleteMapping("/delete/{id}")
-	public ResponseEntity<String> deleteCustomer(@PathVariable("id") Integer id) throws CustomerException {
+	public ResponseEntity<Customer> deleteCustomer(@PathVariable("id") Integer id) throws CustomerException {
 		Customer c=csi.deleteCustomer(id);
-		return new ResponseEntity<String>("Customer deleted succesfully with details :"+c,HttpStatus.ACCEPTED);
+		return new ResponseEntity<Customer>(c,HttpStatus.ACCEPTED);
 	}
 
     @GetMapping("/view/{id}")

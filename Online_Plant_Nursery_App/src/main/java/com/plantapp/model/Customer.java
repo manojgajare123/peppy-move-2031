@@ -13,6 +13,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -30,12 +33,18 @@ public class Customer {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer cid;
 	private String cname;
+	
+	@Email
 	private String cemail;
 	@NonNull
 	@Column(unique = true)
+	@Size(min = 2, max = 6, message = "Minimun Username size must be greater than 2 and less than 6")
+	
 	private String cusername;
 	
 	@NonNull
+	@Pattern(regexp="[a-zA-Z0-9]{6,12}",message="Password must contain between 6 to 12 characters. Must be alphanumeric with both Upper and lowercase characters.")
+
 	private String cpassword;
 
 	@Embedded

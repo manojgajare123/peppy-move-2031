@@ -60,7 +60,7 @@ public class Plant {
 	private String typeOfPlant;
 	
 	@NotEmpty(message = "Plant description should not be empty")
-	@Size(min = 20, max = 500, message = "Minimun plant description size must be greater than 20 and less than 500")
+	@Size(min = 5, max = 500, message = "Minimun plant description size must be greater than 20 and less than 500")
 	private String plantDescription;
 	
 	@NotNull(message = "Stock size must be there")

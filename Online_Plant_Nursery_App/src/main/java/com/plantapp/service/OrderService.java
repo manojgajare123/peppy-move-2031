@@ -17,6 +17,6 @@ public interface OrderService {
 
 	public List<PlantOrder> viewAllOrder() throws OrderException;
 
-	public String getPlanter(Integer id);
+
 
 }

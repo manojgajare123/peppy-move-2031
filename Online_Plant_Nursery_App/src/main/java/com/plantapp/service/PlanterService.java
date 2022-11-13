@@ -12,7 +12,7 @@ public interface PlanterService {
 	
 	public Planter updatePlanter(Planter planter)throws PlanterException;
 	
-	public Planter deletePlanter(Planter planter)throws PlanterException;
+	public Planter deletePlanter(Integer PlanterId)throws PlanterException;
 	
 	public Planter viewPlanterById(Integer planterId)throws PlanterException;
 	

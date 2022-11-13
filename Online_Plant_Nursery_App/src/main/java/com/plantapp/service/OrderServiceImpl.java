@@ -70,7 +70,8 @@ public class OrderServiceImpl implements OrderService {
 			List<Plant> plants = p.getPlants();
 
 			List<Seed> seeds = p.getSeeds();
-
+			
+               if(!flag) {
 			for (Plant a : plants) {
 				if (a.getCommonName().equals(cdto.getProductName())) {
 
@@ -89,8 +90,11 @@ public class OrderServiceImpl implements OrderService {
 						break;
 					}
 				}
+				
 			}
-
+			
+               }
+               if(!flag) {
 			for (Seed a : seeds) {
 
 				if (a.getCommonName().equals(cdto.getProductName())) {
@@ -110,7 +114,7 @@ public class OrderServiceImpl implements OrderService {
 			}
 
 		}
-
+		}
 		if (flag) {
 
 			customer.getOrders().add(order);
@@ -186,45 +190,5 @@ public class OrderServiceImpl implements OrderService {
 		throw new OrderException("no order found with this id");
 	}
 
-	@Override
-	public String getPlanter(Integer id) {
-
-		Optional<PlantOrder> opt = oRepo.findById(id);
-
-		if (opt.isPresent()) {
-
-			String name = opt.get().getName();
-
-			List<Plant> plist = pDao.findByCommonName(name);
-
-			Seed slist =  seedDao.findBycommonName(name);
-
-			if (!plist.isEmpty()) {
-
-				plist.get(0).setPlantStock(plist.get(0).getPlantStock() + 15);
-
-				pDao.save(plist.get(0));
-
-				return "working";
-
-			}
-			
-			
-			if(slist!=null) {
-				
-				slist.setSeedsStock(id);
-
-				pDao.save(plist.get(0));
-
-				return "working";
-				
-				
-				
-			}
-
-		}
-
-		return "not Working";
-	}
-
+	
 }

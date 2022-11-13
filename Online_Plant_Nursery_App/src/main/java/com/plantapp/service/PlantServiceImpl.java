@@ -7,8 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.plantapp.exception.PlantExeption;
+import com.plantapp.exception.PlanterException;
 import com.plantapp.model.Plant;
+import com.plantapp.model.Planter;
 import com.plantapp.repository.PlantDao;
+import com.plantapp.repository.PlanterDao;
 
 
 
@@ -17,6 +20,9 @@ public class PlantServiceImpl implements PlantService {
 
 	@Autowired
 	private PlantDao dao;
+	
+	@Autowired
+	private PlanterDao planterdao;
 	
 	@Override
 	public Plant addPlant(Plant plant) throws PlantExeption {
@@ -115,4 +121,26 @@ List<Plant> plants= dao.findAll();
 			throw new PlantExeption("Plant does not exist with Type "+typeOfPlant);
 	}
 
+	@Override
+	public Planter addPlantToPlanter(Integer PlanterId, Integer PlantId) throws PlanterException, PlantExeption {
+		
+		Optional<Planter> planter=planterdao.findById(PlanterId);
+		Optional<Plant> plant=dao.findById(PlantId);
+		
+		if(!planter.isPresent()) {
+			
+			throw new PlanterException("Planter Not found...");
+		}
+		if(!plant.isPresent()) {
+			throw new PlantExeption("Plant Not found...");
+		}
+	Planter pltr=	planter.get();
+	Plant plt=	plant.get();
+	
+	pltr.getPlants().add(plt);
+	plt.setPlanter(pltr);
+	return  planterdao.save(pltr);
+	
+	}
+   
 }

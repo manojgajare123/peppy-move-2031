@@ -14,7 +14,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.plantapp.exception.PlantExeption;
+import com.plantapp.exception.PlanterException;
 import com.plantapp.exception.SeedException;
+import com.plantapp.model.Planter;
 import com.plantapp.model.Seed;
 import com.plantapp.service.SeedService;
 
@@ -73,6 +76,12 @@ public class SeedController {
 		return new ResponseEntity<List<Seed>>(seeds,HttpStatus.OK);
 	}
 	
-	
+	@GetMapping("/viewPlanter/{PlanterId}/{SeedId}")
+	public ResponseEntity<Planter> savePlanterToPlant(@PathVariable("PlanterId") Integer PlanterId, @PathVariable("SeedId") Integer SeedId) throws PlanterException, SeedException{
+		Planter planter=
+	sService.addSeedToPlanter(PlanterId, SeedId);
+	return new ResponseEntity<Planter>(planter,HttpStatus.OK); 
+		
+	}
 }
 

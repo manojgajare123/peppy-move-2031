@@ -85,17 +85,6 @@ public class PlanterServiceImpl implements PlanterService {
 
 	}
 
-	@Override
-	public Planter deletePlanter(Planter planter) throws PlanterException {
-
-		planterDao.findById(planter.getPlanterId()).orElseThrow(
-				() -> new PlanterException("Planter does not exist with Plant Id " + planter.getPlanterId()));
-		;
-
-		planterDao.delete(planter);
-
-		return planter;
-	}
 
 	@Override
 	public Planter viewPlanterById(Integer planterId) throws PlanterException {
@@ -133,6 +122,18 @@ public class PlanterServiceImpl implements PlanterService {
 			return planters;
 		else
 			throw new PlanterException("No Planters found within "+minCost+" And "+ maxCost);
+	}
+
+	@Override
+	public Planter deletePlanter(Integer PlanterId) throws PlanterException {
+		Planter planterObj= 
+				planterDao.findById(PlanterId).orElseThrow(
+						() -> new PlanterException("Planter does not exist with Plant Id " + PlanterId));
+				
+	
+				planterDao.delete(planterObj);
+		
+				return planterObj;
 	}
 }
 

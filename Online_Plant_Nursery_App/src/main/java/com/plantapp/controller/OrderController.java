@@ -70,10 +70,6 @@ public class OrderController {
 		return new ResponseEntity<>(order, HttpStatus.ACCEPTED);
 	}
 
-	@GetMapping("/check")
-	public String checking(@RequestParam("id") Integer id) {
-
-		return oService.getPlanter(id);
-	}
+	
 
 }
