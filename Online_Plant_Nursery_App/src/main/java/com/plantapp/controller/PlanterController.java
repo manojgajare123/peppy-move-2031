@@ -71,7 +71,7 @@ public class PlanterController {
 	
 	
 	@GetMapping("/viewplantersByMinMax/{mincost}/{maxcost}")
-	public ResponseEntity<List<Planter>> ViewPlantersByMinMax(@PathVariable("min")double min,@PathVariable("max") double max) throws PlanterException{
+	public ResponseEntity<List<Planter>> ViewPlantersByMinMax(@PathVariable("mincost")Double min,@PathVariable("maxcost") Double max) throws PlanterException{
 		List<Planter> planters=	planterService.viewAllPlanters(min, max);
 		return new ResponseEntity<List<Planter>>(planters,HttpStatus.OK);
 	}
