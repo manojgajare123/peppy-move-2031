@@ -1,6 +1,6 @@
 # REST API for Online Plant Nursery Management
-- We have developed this REST API for a Plant Nursery Management system Application. This API performs all the fundamental CRUD operations of any Plant Nursery Application platform with user validation at every step.
-- This project is developed by team of 5 Back-end Developers during project week in Masai School.
+- It is a REST API application for Online Plant Nursery where a user can perform various CRUD operations. 
+- Developed by a Team of 5 members which is executed within 5 Days
 ## Tech Stack
 <img align="left" src="https://1000logos.net/wp-content/uploads/2020/09/Java-Logo.png" alt="drawing" width="100"/>
 <img align="left"  src="https://download.logo.wine/logo/Spring_Framework/Spring_Framework-Logo.wine.png" alt="drawing" width="100"/>
@@ -14,13 +14,15 @@
 ## Modules
 - Login, Logout Module
 - Admin Module
+- Order Module 
+- Customer,Address Module
 - Plants Module
 - Planters Module
 - Seeds Module
 ## Features
 - User and Admin authentication & validation with session uuid.
 ### Admin Features:
-* Administrator Role of the entire application
+* Administrator Role for the entire application
 * Only  admins can add/update/delete plants, planters, seeds from main database
 * Admin can access the details of different users and orders.
 ### User Features:
@@ -33,20 +35,20 @@
 - [Sumit Bokshi](https://github.com/sumitbokshi)
 - [Sudip Karmakar](https://github.com/sudip40)
 - [Arun Prasad](https://github.com/arunprazad001)
+
 ## Installation & Run
-- Before running the API server, you should update the database config inside the application.properties file.
-- Update the port number, username and password as per your local database config.
+ - Before running the API server, you should update the database config inside the application.properties file.
+ - Update the port number, username and password as per your local database configuration.
+ - For current application we have used the below properties.
+```
     server.port=8888
 
-    spring.datasource.url=jdbc:mysql://localhost:3306/springboot
+    spring.datasource.url=jdbc:mysql://localhost:3306/springboot;
     spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
     spring.datasource.username=root
     spring.datasource.password=root
+```
 
-API Root Endpoint
-https://localhost:8888/
-
-http://localhost:8888/swagger-ui/
 
 
 
