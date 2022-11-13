@@ -102,8 +102,7 @@ public class OrderServiceImpl implements OrderService {
 
 				}
 
-			}
-			else if (!flag) {
+			} else if (!flag) {
 				for (Seed a : seeds) {
 
 					if (a.getCommonName().equals(cdto.getProductName())) {
@@ -194,7 +193,6 @@ public class OrderServiceImpl implements OrderService {
 
 		throw new OrderException("No order detail found  this given id");
 
-
 	}
 
 	@Override
@@ -233,7 +231,5 @@ public class OrderServiceImpl implements OrderService {
 
 		throw new OrderException("no order found with this id");
 	}
-
-	
 
 }
