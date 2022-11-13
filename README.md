@@ -2,12 +2,15 @@
 - We have developed this REST API for a Plant Nursery Management system Application. This API performs all the fundamental CRUD operations of any Plant Nursery Application platform with user validation at every step.
 - This project is developed by team of 5 Back-end Developers during project week in Masai School.
 ## Tech Stack
-- Java
-- Spring Framework
-- Spring Boot
-- Spring Data JPA
-- Hibernate
-- MySQL
+<img align="left" src="https://1000logos.net/wp-content/uploads/2020/09/Java-Logo.png" alt="drawing" width="100"/>
+<img align="left"  src="https://download.logo.wine/logo/Spring_Framework/Spring_Framework-Logo.wine.png" alt="drawing" width="100"/>
+<img src="https://download.logo.wine/logo/MySQL/MySQL-Logo.wine.png" alt="drawing" width="100"/>
+<img align = "left" src="https://www.dariawan.com/media/images/tech-spring-boot.width-1024.png" alt="drawing" width="100"/>
+<img align="left"  src="https://upload.wikimedia.org/wikipedia/commons/2/22/Hibernate_logo_a.png" alt="drawing" width="100"/>
+<img  align="left" src="https://miro.medium.com/max/818/1*zc-LgogGtr7fFHF9e1M8wA.png" alt="drawing" width="100"/>
+<img src="https://maven.apache.org/images/maven-logo-white-on-black.purevec.svg" alt="drawing" width="100"/>
+<img src="https://zooz.github.io/predator/images/restapi.png" alt="drawing" width="100"/>
+
 ## Modules
 - Login, Logout Module
 - Admin Module
@@ -25,11 +28,11 @@
 * Viewing list of available plants, planters, seeds and order items of them.
 * Only logged in user can access his orders, profile updation and other features.
 ## Contributors
-- @Manoj Gajare
-- @Rohit Kumar
-- @Sumit Bokshi
-- @Sudip Karmakar
-- @ Arun Prasad V
+- [Manoj Gajare](https://github.com/manojgajare123)
+- [Rohit Kumar](https://github.com/Rohit9252)
+- [Sumit Bokshi](https://github.com/sumitbokshi)
+- [Sudip Karmakar](https://github.com/sudip40)
+- [Arun Prasad](https://github.com/arunprazad001)
 ## Installation & Run
 - Before running the API server, you should update the database config inside the application.properties file.
 - Update the port number, username and password as per your local database config.
