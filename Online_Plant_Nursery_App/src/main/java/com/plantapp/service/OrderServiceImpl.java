@@ -70,63 +70,70 @@ public class OrderServiceImpl implements OrderService {
 			List<Plant> plants = p.getPlants();
 
 			List<Seed> seeds = p.getSeeds();
-			
-               if(!flag) {
-			for (Plant a : plants) {
-				if (a.getCommonName().equals(cdto.getProductName())) {
 
-					if (a.getPlantStock() >= cdto.getProductQty()) {
-						a.setPlantStock(a.getPlantStock() - cdto.getProductQty());
+			if (!flag) {
+				for (Plant a : plants) {
+					if (a.getCommonName().equals(cdto.getProductName())) {
 
-						order.setTotalCost(a.getPlantCost() * cdto.getProductQty());
-						order.setOrderDate(LocalDate.now());
-						order.setQuantity(cdto.getProductQty());
-						order.setTransactionMode(cdto.getTranscationMode());
-						order.setPlanter(p);
-						order.setName(cdto.getProductName());
-						order.setCustomer(customer);
+						if (a.getPlantStock() >= cdto.getProductQty()) {
+							a.setPlantStock(a.getPlantStock() - cdto.getProductQty());
 
-						flag = true;
-						break;
+							order.setTotalCost(a.getPlantCost() * cdto.getProductQty());
+							order.setOrderDate(LocalDate.now());
+							order.setQuantity(cdto.getProductQty());
+							order.setTransactionMode(cdto.getTranscationMode());
+							order.setPlanter(p);
+							order.setName(cdto.getProductName());
+							order.setCustomer(customer);
+
+							flag = true;
+
+							if (flag) {
+
+								customer.getOrders().add(order);
+								PlantOrder detailOrder = oRepo.save(order);
+
+								return detailOrder;
+
+							}
+
+						}
+					}
+
+				}
+
+			} else if (!flag) {
+				for (Seed a : seeds) {
+
+					if (a.getCommonName().equals(cdto.getProductName())) {
+						if (a.getSeedsStock() >= cdto.getProductQty()) {
+							a.setSeedsStock(a.getSeedsStock() - cdto.getProductQty());
+							order.setTotalCost(a.getSeedsCost() * cdto.getProductQty());
+							order.setOrderDate(LocalDate.now());
+							order.setQuantity(cdto.getProductQty());
+							order.setTransactionMode(cdto.getTranscationMode());
+							order.setPlanter(p);
+							order.setName(cdto.getProductName());
+							order.setCustomer(customer);
+							flag = true;
+
+							if (flag) {
+
+								customer.getOrders().add(order);
+								PlantOrder detailOrder = oRepo.save(order);
+
+								return detailOrder;
+
+							}
+
+						}
 					}
 				}
-				
+
 			}
-			
-               }
-               if(!flag) {
-			for (Seed a : seeds) {
-
-				if (a.getCommonName().equals(cdto.getProductName())) {
-					if (a.getSeedsStock() >= cdto.getProductQty()) {
-						a.setSeedsStock(a.getSeedsStock() - cdto.getProductQty());
-						order.setTotalCost(a.getSeedsCost() * cdto.getProductQty());
-						order.setOrderDate(LocalDate.now());
-						order.setQuantity(cdto.getProductQty());
-						order.setTransactionMode(cdto.getTranscationMode());
-						order.setPlanter(p);
-						order.setName(cdto.getProductName());
-						order.setCustomer(customer);
-						flag = true;
-						break;
-					}
-				}
-			}
-
 		}
-		}
-		if (flag) {
 
-			customer.getOrders().add(order);
-
-			cRepo.save(customer);
-
-			PlantOrder p = oRepo.save(order);
-
-			return p;
-
-		} else
-			throw new OrderException("No Detail found ");
+		throw new OrderException("No Detail found ");
 
 	}
 
@@ -135,21 +142,56 @@ public class OrderServiceImpl implements OrderService {
 
 		Optional<PlantOrder> opt = oRepo.findById(id);
 
+		boolean flag = false;
+
 		if (opt.isPresent()) {
 
 			PlantOrder p = opt.get();
 
-			Planter a = p.getPlanter();
+			String name = opt.get().getName();
 
-			System.out.println(a);
+			List<Plant> plist = pDao.findByCommonName(name);
 
-			oRepo.delete(p);
+			Seed slist = seedDao.findBycommonName(name);
 
-			return p;
+			if (!flag) {
+				if (!plist.isEmpty()) {
+
+					plist.get(0).setPlantStock(plist.get(0).getPlantStock() + p.getQuantity());
+
+					pDao.save(plist.get(0));
+
+					flag = true;
+
+				}
+
+			}
+
+			if (!flag) {
+				if (slist != null) {
+
+					slist.setSeedsStock(slist.getSeedsStock() + p.getQuantity());
+
+					seedDao.save(slist);
+
+					flag = true;
+
+				}
+			}
+
+			if (flag) {
+
+				p.setPlanter(null);
+
+				oRepo.delete(p);
+
+				return p;
+
+			}
 
 		}
 
-		throw new OrderException("No Order Found wth this id" + id);
+		throw new OrderException("No order detail found  this given id");
 
 	}
 
@@ -190,5 +232,4 @@ public class OrderServiceImpl implements OrderService {
 		throw new OrderException("no order found with this id");
 	}
 
-	
 }
