@@ -1,4 +1,4 @@
-# REST API for Online Plant Nursery Management
+# REST API for Online Plant Nursery Management <img align="right" src="https://user-images.githubusercontent.com/102937949/201634735-be2ef84d-4c26-447d-88d1-e0a5a75f06ac.jpeg" width="200"/>
 - It is a REST API application for Online Plant Nursery where a user can perform various CRUD operations. 
 - Developed by a Team of 5 members which is executed within 5 Days
 ## Tech Stack
