@@ -1,6 +1,7 @@
 # REST API for Online Plant Nursery Management <img align="right" src="https://user-images.githubusercontent.com/102937949/201634735-be2ef84d-4c26-447d-88d1-e0a5a75f06ac.jpeg" width="200"/>
 - It is a REST API application for Online Plant Nursery where a user can perform various CRUD operations. 
 - Developed by a Team of 5 members which is executed within 5 Days
+- Explanation video : https://drive.google.com/file/d/1GOhjwQBInM5UtWm84fBpZ5u8ySH3YweC/view?usp=sharing
 ## Tech Stack
 <img align="left" src="https://1000logos.net/wp-content/uploads/2020/09/Java-Logo.png" alt="drawing" width="100"/>
 <img align="left"  src="https://download.logo.wine/logo/Spring_Framework/Spring_Framework-Logo.wine.png" alt="drawing" width="100"/>
